@@ -15,7 +15,7 @@ function Login() {
       [e.target.name]: e.target.value
     });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Simple validation - you can change these credentials
@@ -58,6 +58,7 @@ function Login() {
             className='bg-green-500 rounded-md pt-3 pb-3 pl-7 pr-7
             hover:scale-[1.05] transform text-xl
             transition-transform duration-400'
+            onClick={handleSubmit}
           >
             Login
           </button>
