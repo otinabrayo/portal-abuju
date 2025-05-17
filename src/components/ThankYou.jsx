@@ -2,7 +2,7 @@ import React from 'react'
 
 function ThankYou() {
   return (
-    <div className='bg-[url(/src/assets/ours.jpg)] bg-cover bg-center border-2 rounded-3xl'>
+    <div className='bg-[url(/assets/ours.jpg)] bg-cover bg-center border-2 rounded-3xl'>
     <div className='pt-10 justify-center items-center text-black
     flex flex-col gap-4  p-10 rounded-3xl justify-center items-center
     '>

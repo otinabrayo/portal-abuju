@@ -3,7 +3,7 @@ import React from 'react'
 function Subject() {
   return (
     <div className='pt-10 justify-center items-center text-black'>
-      <div className='bg-[url(/src/assets/ours.jpg)] bg-cover bg-center p-10 rounded-3xl justify-center items-center'>
+      <div className='bg-[url(/assets/ours.jpg)] bg-cover bg-center p-10 rounded-3xl justify-center items-center'>
         <h1 className='text-3xl font-bold'>Submit a Grieviance 🌹</h1>
         <form
           action="https://formspree.io/f/xeognvez"
