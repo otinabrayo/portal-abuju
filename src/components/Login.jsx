@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
@@ -17,9 +17,11 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simple validation - you can change these credentials
+    e.preventDefault(); // ✅ Prevent page reload
+    console.log('Submitted'); // ✅ Test if this shows
+
     if (formData.username === 'wairimu' && formData.password === 'love') {
+      console.log('Navigating...'); // ✅ Debug
       navigate('/subject');
     } else {
       setError('Invalid username or password');
@@ -31,8 +33,9 @@ function Login() {
       <div className='bg-[url(/src/assets/hands_up.jpg)] bg-cover bg-center p-10 rounded-3xl'>
         <p className='text-4xl font-bold'>Wairimu's Grieviance Portal ❤</p>
         <br />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}> {/* ✅ THIS is the key */}
           <input
+            autoComplete="username" // ✅ Add this to silence warning
             type="text"
             name="username"
             value={formData.username}
@@ -43,29 +46,29 @@ function Login() {
           />
           <br />
           <input
-            required
+            autoComplete="current-password" // ✅ Add this to silence warning
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             placeholder='Password'
             className='border-3 rounded-md p-3 mb-6'
+            required
           />
           <br />
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <button
-            type='submit'
+            type="submit"
             className='bg-green-500 rounded-md pt-3 pb-3 pl-7 pr-7
-            hover:scale-[1.05] transform text-xl
-            transition-transform duration-400'
-            onClick={handleSubmit}
+              hover:scale-[1.05] transform text-xl
+              transition-transform duration-400'
           >
             Login
           </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default Login;
