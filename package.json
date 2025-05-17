@@ -1,5 +1,6 @@
 {
   "name": "portal-wa",
+  "homepage": "https://otinabrayo.github.io/portal-abuju/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predepoloy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
