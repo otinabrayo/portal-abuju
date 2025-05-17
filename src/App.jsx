@@ -6,7 +6,8 @@ import ThankYou from './components/ThankYou'
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  const isAuthenticated = localStorage.getItem('authenticated') === 'true';
+
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 

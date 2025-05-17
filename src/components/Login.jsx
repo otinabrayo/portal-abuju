@@ -21,10 +21,8 @@ function Login() {
     console.log('Submitted'); // ✅ Test if this shows
 
     if (formData.username === 'wairimu' && formData.password === 'love') {
-      console.log('Navigating...'); // ✅ Debug
+      localStorage.setItem('authenticated', 'true');
       navigate('/subject');
-    } else {
-      setError('Invalid username or password');
     }
   };
 
