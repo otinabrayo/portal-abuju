@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ThankYou() {
   const [redirecting, setRedirecting] = React.useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="rounded-xl justify-center items-center text-black bg-[url(/assets/flower.jpg)] bg-cover bg-center h-screen pt-40 p-10">
@@ -18,7 +20,7 @@ function ThankYou() {
                 onClick={() => {
                   setRedirecting(true);
                   setTimeout(() => {
-                    window.location.href = '/portal-abuju/subject';
+                    navigate('/subject');
                   }, 1000);
                 }}
                 className="hover:scale-[1.12] bg-fuchsia-900 text-white px-4 py-2 rounded-md cursor-pointer shadow-md hover:shadow-lg transition duration-300"
