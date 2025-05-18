@@ -18,7 +18,7 @@ function WelcomePage() {
         </p>
 
         <a
-          href='/portal-abuju/login'
+          href='/login'
           className='inline-block w-full sm:w-auto px-6 py-3 bg-pink-400 hover:bg-pink-500 text-white font-bold rounded-full shadow-md transition duration-300 transform hover:scale-105'
         >
           🔐 Login to Your Account
