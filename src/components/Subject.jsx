@@ -57,7 +57,13 @@ function Subject() {
   };
 
   return (
-    <div className="rounded-xl justify-center items-center text-black bg-pink-200 h-screen p-20">
+    <div className="relative rounded-xl justify-center items-center text-black bg-pink-200 h-screen p-20">
+      <button
+        className="absolute top-6 right-6 bg-white text-pink-500 border border-pink-400 px-4 py-2 rounded-full shadow hover:bg-pink-100 font-semibold z-50"
+        onClick={() => navigate('/login')}
+      >
+        Log Out
+      </button>
       <div
         className="bg-[url(/assets/ours.jpg)] bg-cover bg-center p-10 rounded-3xl justify-center items-center"
       >

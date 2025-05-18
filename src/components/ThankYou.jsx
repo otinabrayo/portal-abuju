@@ -6,8 +6,16 @@ function ThankYou() {
   const navigate = useNavigate();
 
   return (
-    <div className="rounded-xl justify-center items-center text-black bg-[url(/assets/flower.jpg)] bg-cover bg-center h-screen pt-40 p-10">
-      <div className="bg-[url(/assets/3_rivers.jpg)] pt-40 bg-cover bg-center border-2 rounded-2xl">
+    <div className="relative rounded-xl justify-center items-center text-black bg-[url(/assets/flower.jpg)] bg-cover bg-center h-screen pt-40 p-10">
+      <span className="text-8xl animate-pulse absolute top-6">❤</span>
+      <button
+        className="absolute top-6 right-6 bg-white text-pink-500 border border-pink-400 px-4 py-2 rounded-full shadow hover:bg-pink-100 font-semibold z-50"
+        onClick={() => navigate('/login')}
+      >
+        Log Out
+      </button>
+      <div className=" pt-40 bg-cover bg-center border-3 border-pink-100 rounded-2xl">
+
         <div className="pt-10 justify-center items-center text-black flex flex-col gap-4 p-10 rounded-3xl">
           {redirecting ? (
             <div className="animate-spin rounded-full border-4 border-pink-500 border-t-transparent w-8 h-8"></div>
