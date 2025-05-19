@@ -3,6 +3,7 @@ import Login from './components/Login'
 import WelcomePage from './components/WelcomePage'
 import Subject from './components/Subject'
 import ThankYou from './components/ThankYou'
+import Register from './components/Register'
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -20,6 +21,7 @@ function App() {
             <Routes>
               <Route path="/" element={<WelcomePage />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route
                 path="/subject"
                 element={

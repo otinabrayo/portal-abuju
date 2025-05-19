@@ -8,23 +8,48 @@ function Login() {
     password: ''
   });
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted');
+    setError('');
+    setIsLoading(true);
 
-    if (formData.username === 'wairimu' && formData.password === 'love') {
-      localStorage.setItem('authenticated', 'true');
-      navigate('/subject');
-    } else {
-      setError('Invalid username or password !!!');
+    try {
+      console.log('Sending login request:...');
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log('Response status:', response.status);
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (response.ok) {
+        console.log('Login successful, setting authentication...');
+        localStorage.setItem('authenticated', 'true');
+        navigate('/subject');
+      } else {
+        console.log('Login failed:', data.message);
+        setError(data.message || 'Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Failed to connect to the server. Please try again later.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,14 +81,22 @@ function Login() {
             required
           />
           <br />
-          {error && (<p className="text-red-500 mb-4">{error}</p>)}
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <span className="block sm:inline">{error}</span>
+            </div>
+          )}
           <button
             type="submit"
-            className='bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105'
+            disabled={isLoading}
+            className={`bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
+        <p className="text-sm text-center text-gray-500 mt-4">
+          Don't have an account? <a href="/portal-abuju/register" className="text-pink-500 hover:text-pink-600">Register</a>
+        </p>
       </div>
     </div>
   );
