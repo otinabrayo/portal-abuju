@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+// Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../dist')));
 
 // Validation middleware
@@ -37,7 +39,7 @@ const validateRegistration = (req, res, next) => {
     next();
 };
 
-// Authentication routes
+// API Routes
 app.post('/api/register', validateRegistration, async (req, res) => {
     const { username, password } = req.body;
     console.log('Processing registration for:', username);
@@ -95,12 +97,11 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Serve static files in production
-if (process.env.NODE_ENV === 'production') {
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../dist/index.html'));
-    });
-}
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {

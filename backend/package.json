@@ -4,7 +4,7 @@
     "description": "Backend server for Grieviance Portal",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js",
+        "start": "node start-prod.js",
         "dev": "nodemon server.js",
         "db:init": "psql -U $DB_USER -d $DB_NAME -f db/schema.sql"
     },
@@ -17,5 +17,8 @@
     },
     "devDependencies": {
         "nodemon": "^3.0.2"
+    },
+    "engines": {
+        "node": ">=18.0.0"
     }
 }
