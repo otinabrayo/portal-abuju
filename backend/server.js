@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const db = require('./config/db');
 require('dotenv').config();
 
 const app = express();
@@ -11,11 +12,6 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../dist')));
-
-// Temporary user storage (replace with database in production)
-const users = [
-    { username: 'wairimu', password: 'love' }
-];
 
 // Validation middleware
 const validateRegistration = (req, res, next) => {
@@ -42,40 +38,60 @@ const validateRegistration = (req, res, next) => {
 };
 
 // Authentication routes
-app.post('/api/register', validateRegistration, (req, res) => {
+app.post('/api/register', validateRegistration, async (req, res) => {
     const { username, password } = req.body;
     console.log('Processing registration for:', username);
 
-    // Check if username already exists
-    if (users.some(user => user.username === username)) {
-        console.log('Registration failed: Username already exists');
-        return res.status(400).json({ message: 'Username already exists' });
-    }
+    try {
+        // Check if username already exists
+        const userCheck = await db.query(
+            'SELECT * FROM users WHERE username = $1',
+            [username]
+        );
 
-    // Add new user
-    users.push({ username, password });
-    console.log('New user registered successfully:', username);
-    console.log('Current users:', users);
-    res.status(201).json({ message: 'Registration successful' });
+        if (userCheck.rows.length > 0) {
+            console.log('Registration failed: Username already exists');
+            return res.status(400).json({ message: 'Username already exists' });
+        }
+
+        // Add new user
+        await db.query(
+            'INSERT INTO users (username, password) VALUES ($1, $2)',
+            [username, password]
+        );
+
+        console.log('New user registered successfully:', username);
+        res.status(201).json({ message: 'Registration successful' });
+    } catch (error) {
+        console.error('Registration error:', error);
+        res.status(500).json({ message: 'Error registering user' });
+    }
 });
 
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     console.log('Login attempt for:', username);
-    console.log('Current users:', users);
 
-    // Find user
-    const user = users.find(u => u.username === username && u.password === password);
+    try {
+        // Find user
+        const result = await db.query(
+            'SELECT * FROM users WHERE username = $1 AND password = $2',
+            [username, password]
+        );
 
-    if (user) {
-        console.log('Login successful for:', username);
-        res.json({
-            message: 'Login successful',
-            user: { username: user.username }
-        });
-    } else {
-        console.log('Login failed for:', username);
-        res.status(401).json({ message: 'Invalid username or password' });
+        if (result.rows.length > 0) {
+            console.log('Login successful for:', username);
+            res.json({
+                message: 'Login successful',
+                user: { username: result.rows[0].username }
+            });
+        } else {
+            console.log('Login failed for:', username);
+            res.status(401).json({ message: 'Invalid username or password' });
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ message: 'Error during login' });
     }
 });
 
@@ -94,5 +110,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-    console.log('Current users:', users);
 });
