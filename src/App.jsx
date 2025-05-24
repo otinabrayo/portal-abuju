@@ -18,7 +18,7 @@ function App() {
     <>
       <div className="bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-300 min-h-screen font-inter">
         <div className="max-w-5xl w-11/12 mx-auto">
-          <Router basename="/portal-wa/">
+          <Router basename="/portal-abuju/">
             <Routes>
               <Route path="/" element={<WelcomePage />} />
               <Route path="/login" element={<Login />} />
@@ -35,7 +35,12 @@ function App() {
                                         </ProtectedRoute>
                                      }
               />
-              <Route path="/thankyou" element={<ThankYou />} />
+              <Route path="/thankyou" element={
+                                        <ProtectedRoute>
+                                          <ThankYou />
+                                        </ProtectedRoute>
+                                      }
+              />
             </Routes>
           </Router>
         </div>

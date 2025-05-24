@@ -88,9 +88,9 @@ function Login() {
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-        <p className="text-sm text-center text-gray-500 mt-4">
+        {/* <p className="text-sm text-center text-gray-500 mt-4">
           Don't have an account? <a href="/register" className="text-pink-500 hover:text-pink-600">Register</a>
-        </p>
+        </p> */}
       </div>
     </div>
   );
