@@ -24,30 +24,18 @@ function Login() {
     setIsLoading(true);
 
     try {
-      console.log('Sending login request:...');
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      console.log('Response status:', response.status);
-      const data = await response.json();
-      console.log('Response data:', data);
-
-      if (response.ok) {
+      // Check for specific credentials
+      if (formData.username === 'wairimu' && formData.password === 'love') {
         console.log('Login successful, setting authentication...');
         localStorage.setItem('authenticated', 'true');
+        localStorage.setItem('username', formData.username);
         navigate('/subject');
       } else {
-        console.log('Login failed:', data.message);
-        setError(data.message || 'Invalid username or password');
+        setError('Invalid username or password');
       }
     } catch (error) {
       console.error('Login error:', error);
-      setError('Failed to connect to the server. Please try again later.');
+      setError('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -55,6 +43,12 @@ function Login() {
 
   return (
     <div className="bg-[#FFD1DC] p-10 rounded-3xl flex flex-col items-center justify-center h-screen text-black">
+      <button
+        className="absolute top-5 bg-white text-pink-500 border border-pink-400 px-4 py-2 rounded-full shadow hover:bg-pink-100 font-semibold z-50 flex items-center gap-2"
+        onClick={() => navigate('/')}
+      >
+        <span>←</span>Back to Welcome Page
+      </button>
       <div className='bg-[url(/src/assets/hands_up.jpg)] bg-cover bg-center p-10 rounded-3xl'>
         <p className='text-4xl font-bold'>Wairimu's Grieviance Portal ❤️</p>
         <br />
@@ -95,7 +89,7 @@ function Login() {
           </button>
         </form>
         <p className="text-sm text-center text-gray-500 mt-4">
-          Don't have an account? <a href="/portal-abuju/register" className="text-pink-500 hover:text-pink-600">Register</a>
+          Don't have an account? <a href="/register" className="text-pink-500 hover:text-pink-600">Register</a>
         </p>
       </div>
     </div>

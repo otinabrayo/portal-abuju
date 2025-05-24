@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ThankYou from './ThankYou'
 
-function Subject() {
+function O_Subject() {
   const [formData, setFormData] = useState({
     Title: '',
     Message: '',
@@ -30,7 +30,7 @@ function Subject() {
     }
 
     try {
-      const response = await fetch('https://formspree.io/f/xeognvez', {
+      const response = await fetch('https://formspree.io/f/mrbqwzdg', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,25 +59,21 @@ function Subject() {
   return (
     <div className="relative rounded-xl justify-center items-center text-black bg-pink-200 h-screen p-20">
       <button
+        className="absolute top-6 left-6 bg-white text-pink-500 border border-pink-400 px-4 py-2 rounded-full shadow hover:bg-pink-100 font-semibold z-50 flex items-center gap-2"
+        onClick={() => navigate('/subject')}
+      >
+        <span>←</span> Back
+      </button>
+      <button
         className="absolute top-6 right-6 bg-white text-pink-500 border border-pink-400 px-4 py-2 rounded-full shadow hover:bg-pink-100 font-semibold z-50"
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/login')}
       >
         Log Out
       </button>
       <div
         className="bg-[url(/assets/ours.jpg)] bg-cover bg-center p-10 rounded-3xl justify-center items-center"
       >
-        <h1 className="text-3xl font-bold">Submit a Grieviance 🌹</h1>
-        <span className="transition transform hover:scale-101 block my-3 text-left"> Click to fill{' '}
-          <a
-
-            href='/portal-wa/o_subject'
-            type="submit"
-            className="bg-gradient-to-r from-pink-200 to-pink-400 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
-          >
-            Grieviance to my Girlfriend ❤
-          </a>
-        </span>
+        <h1 className="text-3xl font-bold">Submit a Grieviance to Girlfriend🌹</h1>
         {error && (
           <p className="text-red-500 mb-4">{error}</p>
         )}
@@ -136,8 +132,8 @@ function Subject() {
             </option>
             <option value="You're a shitty boyfriend">You're a shitty boyfriend.</option>
             <option value="I could use a hug right now">I could use a hug right now.</option>
-            <option value="Please call me ASAP red Alert⏰ BRIAN">
-              Please call me ASAP red Alert⏰ BRIAN.
+            <option value="Please call me ASAP red Alert⏰ ANNE">
+              Please call me ASAP red Alert⏰ ANNE.
             </option>
             <option value="I'm not sure what to do babe reach out to me">
               I'm not sure what to do babe reach out to me.
@@ -147,7 +143,7 @@ function Subject() {
             type="submit"
             className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105"
           >
-            Submit 💌
+            Submit to Abuju 💌
           </button>
         </form>
       </div>
@@ -155,4 +151,4 @@ function Subject() {
   );
 }
 
-export default Subject;
+export default O_Subject;
