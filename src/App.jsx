@@ -13,12 +13,14 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
+const basename = import.meta.env.VERCEL === '1' ? '/' : '/portal-abuju/'
+
 function App() {
   return (
     <>
       <div className="bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-300 min-h-screen font-inter">
         <div className="max-w-5xl w-11/12 mx-auto">
-          <Router basename="/portal-abuju/">
+          <Router basename={basename}>
             <Routes>
               <Route path="/" element={<WelcomePage />} />
               <Route path="/login" element={<Login />} />
