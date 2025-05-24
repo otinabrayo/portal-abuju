@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+        {
+            "source": "/portal-abuju/(.*)",
+            "destination": "/portal-abuju/index.html"
+        }
+    ],
+    "basePath": "/portal-abuju"
+}

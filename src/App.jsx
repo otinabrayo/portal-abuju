@@ -14,7 +14,8 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
-const basename = import.meta.env.BASE_URL || '/'
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basename = isGitHubPages ? '/portal-abuju' : '/';
 
 function App() {
   return (
