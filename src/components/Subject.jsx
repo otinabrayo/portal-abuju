@@ -68,15 +68,14 @@ function Subject() {
         className="bg-[url(/assets/ours.jpg)] bg-cover bg-center p-10 rounded-3xl justify-center items-center"
       >
         <h1 className="text-3xl font-bold">Submit a Grieviance 🌹</h1>
-        <span className="transition transform hover:scale-101 block my-3 text-left"> Click to fill{' '}
-          <a
-
-            href='/portal-wa/o_subject'
-            type="submit"
-            className="bg-gradient-to-r from-pink-200 to-pink-400 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+        <span className="block my-3 text-left"> Click to fill{' '}
+          <button
+            onClick={() => navigate('/o_subject')}
+            type="button"
+            className="transition transform hover:scale-1.01 ml-2 bg-gradient-to-r from-pink-200 to-pink-400 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
           >
             Grieviance to my Girlfriend ❤
-          </a>
+          </button>
         </span>
         {error && (
           <p className="text-red-500 mb-4">{error}</p>
