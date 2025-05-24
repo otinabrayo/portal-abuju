@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 
 function Register() {
     const navigate = useNavigate();
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
 
     const [formData, setFormData] = useState({
         username: '',
@@ -19,27 +20,29 @@ function Register() {
         setError('');
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
-        setIsLoading(true);
-
+    const handleGoogleSuccess = async (credentialResponse) => {
         try {
-            // Only allow specific credentials
-            if (formData.username === 'wairimu' && formData.password === 'love') {
-                console.log('Registration successful, redirecting to login...');
-                localStorage.setItem('authenticated', 'true');
-                localStorage.setItem('username', formData.username);
-                navigate('/login');
-            } else {
-                setError('Invalid registration credentials');
-            }
+            const decoded = jwtDecode(credentialResponse.credential);
+            console.log('Google Sign In Success:', decoded);
+
+            // Store user info in localStorage
+            localStorage.setItem('authenticated', 'true');
+            localStorage.setItem('username', decoded.email);
+            localStorage.setItem('userInfo', JSON.stringify({
+                email: decoded.email,
+                name: decoded.name,
+                picture: decoded.picture
+            }));
+
+            navigate('/login');
         } catch (error) {
-            console.error('Registration error:', error);
-            setError('An error occurred. Please try again.');
-        } finally {
-            setIsLoading(false);
+            console.error('Google Sign In Error:', error);
+            setError('Failed to sign in with Google. Please try again.');
         }
+    };
+
+    const handleGoogleError = () => {
+        setError('Google Sign In was unsuccessful. Please try again.');
     };
 
     return (
@@ -47,51 +50,32 @@ function Register() {
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
                 <h1 className="text-3xl font-bold text-center text-pink-600 mb-6">Create Your Account ❤️</h1>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <input
-                            type="text"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange}
-                            placeholder='Username'
-                            className='w-full border-2 border-pink-300 rounded-md p-3 focus:border-pink-500 focus:outline-none'
-                            required
-                            minLength={3}
-                        />
+                <div className="mb-6">
+                    <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={handleGoogleError}
+                        useOneTap={false}
+                        theme="filled_blue"
+                        text="signup_with"
+                        shape="rectangular"
+                        width="400"
+                        type="standard"
+                        size="large"
+                    />
+                </div>
+
+                <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-gray-300"></div>
                     </div>
-
-                    <div>
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder='Password'
-                            className='w-full border-2 border-pink-300 rounded-md p-3 focus:border-pink-500 focus:outline-none'
-                            required
-                            minLength={4}
-                        />
+                    <div className="relative flex justify-center text-sm">
+                        <span className="px-2 bg-white text-gray-500">Or continue login</span>
                     </div>
-
-                    {error && (
-                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                            <span className="block sm:inline">{error}</span>
-                        </div>
-                    )}
-
-                    <button
-                        type="submit"
-                        disabled={isLoading}
-                        className={`w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-md transition`}
-                    >
-                        {isLoading ? 'Creating Account...' : 'Create Account'}
-                    </button>
-                </form>
+                </div>
 
                 <p className="text-center text-gray-600 mt-4">
                     Already have an account?{' '}
-                    <a href="/login" className="text-pink-500 hover:text-pink-600 font-medium">
+                    <a href="/portal-abuju/login" className="text-pink-500 hover:text-pink-600 font-small">
                         Login
                     </a>
                 </p>

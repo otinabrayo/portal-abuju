@@ -130,7 +130,7 @@ function O_Subject() {
             <option value="Buying me some Yorghut/Chocolate would fix this">
               Buying me some snack would fix this.
             </option>
-            <option value="You're a shitty boyfriend">You're a shitty boyfriend.</option>
+            <option value="You're a shitty boyfriend">You're a shitty Girlfriend.</option>
             <option value="I could use a hug right now">I could use a hug right now.</option>
             <option value="Please call me ASAP red Alert⏰ ANNE">
               Please call me ASAP red Alert⏰ ANNE.
