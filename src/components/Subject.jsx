@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ThankYou from './ThankYou'
+import ThankYou from './ThankYou';
 
 function Subject() {
   const [formData, setFormData] = useState({
@@ -23,7 +23,6 @@ function Subject() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!formData.Title || !formData.Message || !formData.Mood || !formData.Severity) {
       setError('Please fill out all fields.');
       return;
@@ -64,11 +63,10 @@ function Subject() {
       >
         Log Out
       </button>
-      <div
-        className="bg-[url(/assets/ours.jpg)] bg-cover bg-center p-10 rounded-3xl justify-center items-center"
-      >
+      <div className="bg-[url(/assets/ours.jpg)] bg-cover bg-center p-10 rounded-3xl justify-center items-center">
         <h1 className="text-3xl font-bold">Submit a Grieviance 🌹</h1>
-        <span className="block my-3 text-left"> Click to fill{' '}
+        <span className="block my-3 text-left">
+          Click to fill{' '}
           <button
             onClick={() => navigate('/o_subject')}
             type="button"
@@ -77,14 +75,8 @@ function Subject() {
             Grieviance to my Girlfriend ❤
           </button>
         </span>
-        {error && (
-          <p className="text-red-500 mb-4">{error}</p>
-        )}
-        {success && (
-          <Router>
-            <Route path="/thankyou" element={<ThankYou />} />
-          </Router>
-        )}
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {success && <ThankYou />}
         <form onSubmit={handleSubmit} className="flex flex-col w-full md:w-7/12">
           <input
             required
@@ -111,7 +103,7 @@ function Subject() {
             onChange={handleChange}
             className="border-3 border-pink-400 rounded-md p-3 mb-6 focus:border-green-500 focus:outline-none"
           >
-            <option value="" disabled selected>Select your mood</option>
+            <option value="" disabled>Select your mood</option>
             <option value="😠 are you serious">😠 are you serious</option>
             <option value="😢 sad">😢 sad</option>
             <option value="😡 angry">😡 angry</option>
@@ -126,7 +118,7 @@ function Subject() {
             onChange={handleChange}
             className="border-3 border-pink-400 rounded-md p-3 mb-6 focus:border-green-500 focus:outline-none"
           >
-            <option value="" disabled selected>Select severity</option>
+            <option value="" disabled>Select severity</option>
             <option value="Saying you love me would make me feel better">
               Saying you love me would make me feel better.
             </option>

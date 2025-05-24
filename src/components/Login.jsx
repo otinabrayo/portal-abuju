@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 
 function Login() {
   const navigate = useNavigate();
@@ -18,6 +20,31 @@ function Login() {
     setError('');
   };
 
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
+      console.log('Google Sign In Success:', decoded);
+
+      // Store user info in localStorage
+      localStorage.setItem('authenticated', 'true');
+      localStorage.setItem('username', decoded.email);
+      localStorage.setItem('userInfo', JSON.stringify({
+        email: decoded.email,
+        name: decoded.name,
+        picture: decoded.picture
+      }));
+
+      navigate('/subject');
+    } catch (error) {
+      console.error('Google Sign In Error:', error);
+      setError('Failed to sign in with Google. Please try again.');
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError('Google Sign In was unsuccessful. Please try again.');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -25,7 +52,7 @@ function Login() {
 
     try {
       // Check for specific credentials
-      if (formData.username === 'wairimu' && formData.password === 'love') {
+      if (formData.username === import.meta.env.VITE_USER && formData.password === import.meta.env.VITE_PASS) {
         console.log('Login successful, setting authentication...');
         localStorage.setItem('authenticated', 'true');
         localStorage.setItem('username', formData.username);
@@ -52,6 +79,28 @@ function Login() {
       <div className='bg-[url(/src/assets/hands_up.jpg)] bg-cover bg-center p-10 rounded-3xl'>
         <p className='text-4xl font-bold'>Wairimu's Grieviance Portal ❤️</p>
         <br />
+
+        <div className="mb-6">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap
+            theme="filled_blue"
+            text="signin_with"
+            shape="rectangular"
+            width="100%"
+          />
+        </div>
+
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-white text-gray-500">Or continue with</span>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             autoComplete="username"
@@ -88,9 +137,9 @@ function Login() {
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-        {/* <p className="text-sm text-center text-gray-500 mt-4">
-          Don't have an account? <a href="/register" className="text-pink-500 hover:text-pink-600">Register</a>
-        </p> */}
+        <p className="text-sm text-center text-white mt-4">
+          Don't have an account? <a href="/portal-abuju/register" className="text-pink-500 hover:text-pink-600">Register</a>
+        </p>
       </div>
     </div>
   );
