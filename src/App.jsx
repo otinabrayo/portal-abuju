@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
-const basename = import.meta.env.VERCEL === '1' ? '/' : '/portal-abuju/'
+const basename = import.meta.env.BASE_URL || '/'
 
 function App() {
   return (
