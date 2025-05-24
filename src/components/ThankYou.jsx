@@ -22,8 +22,8 @@ function ThankYou() {
           ) : (
             <>
               <h1 className="text-3xl font-bold animate-bounce">Thank You Babe💕.</h1>
-              <p className="bg-black rounded-md px-2 py-1 text-zinc-50 text-xl">Your Grieviance has been sent to your <span className="text-rose-500"> significant other 💌</span>.</p>
-              <p className="bg-black rounded-md px-2 py-1 text-zinc-50 text-xl">Will get back to you very soon! ✔ I Love you so much Babe 💕</p>
+              <p className="bg-black rounded-md px-2 py-1 text-zinc-50 text-xl">Your Grieviance has been sent to your <span className="text-rose-500"> love 💌</span>.</p>
+              <p className="bg-black rounded-md px-2 py-1 text-zinc-50 text-xl">I'll get back to you very soon! ✔ I Love you so much Babe 💕</p>
               <button
                 onClick={() => {
                   setRedirecting(true);
