@@ -9,7 +9,7 @@ function Subject() {
     Message: '',
     Mood: '',
     Severity: '',
-    Reply:'https://github.com/otinabrayo/portal-abuju/deployments'
+    Reply:'https://portal-abuju.vercel.app/a_reply'
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -155,15 +155,25 @@ function Subject() {
             placeholder="Custom Solution/severity when needed"
             value={formData.Custom_Solution}
             onChange={handleChange}
-            className="text-pink-900 border-3 border-pink-400 rounded-md p-9 mb-6 focus:border-green-500 focus:outline-none"
+            className="text-black border-3 border-pink-400 rounded-md p-9 mb-6 focus:border-green-500 focus:outline-none"
           ></textarea>
-          
+
           <button
             type="submit"
             className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105"
           >
             Submit 💌
           </button>
+
+          {/* <button
+            onClick={() => {
+              navigate('/a_reply');
+            }}
+            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105 mt-4"
+          >
+            Reply
+          </button> */}
+
         </form>
       </div>
     </div>
