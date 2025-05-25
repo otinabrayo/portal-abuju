@@ -4,16 +4,20 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 function A_Reply() {
   const [replyMessage, setReplyMessage] = useState('');
-  const [moodFeedback, setMoodFeedback] = useState('How Do You Feel');
+  const [moodFeedback, setMoodFeedback] = useState('');
   const [actionPlan, setActionPlan] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
-
+  
   const handleSubmit = async () => {
     if (!replyMessage.trim()) {
       setError('Please write a response before sending.');
+      return;
+    }
+
+    if (!moodFeedback) {
+      setError('Please select how you feel about this.');
       return;
     }
 
@@ -57,7 +61,7 @@ function A_Reply() {
   };
 
   return (
-    <div className="bg-zinc-500 p-4 rounded-lg shadow-md">
+    <div className="bg-pink-300 p-4 rounded-lg shadow-2xl">
       <h1 className="text-3xl font-bold text-center mb-4">Responding to my PumPum Annie🍑</h1>
       <div className="bg-white p-4 rounded-lg shadow-md mb-4">
         <h2 className="text-xl font-medium mb-2">Your Reply:</h2>
@@ -79,7 +83,7 @@ function A_Reply() {
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={isLoading}
           >
-            <option value="" disabled>How Do You Feel</option>
+            <option value="" disabled>Select your feeling about it</option>
             <option value="😊">😊 Happy</option>
             <option value="😐">😐 Neutral</option>
             <option value="😔">😔 Sad</option>
@@ -105,9 +109,10 @@ function A_Reply() {
 
         <div className="mb-2">
           <label htmlFor="actionPlan" className="text-rose-700 block text-sm font-medium text-gray-700">
-            What actions will you take? (Optional)
+            What actions will you take?
           </label>
           <textarea
+            required
             id="actionPlan"
             value={actionPlan}
             onChange={(e) => setActionPlan(e.target.value)}

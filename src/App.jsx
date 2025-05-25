@@ -25,7 +25,7 @@ function App() {
     <ErrorBoundary>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
         <div className="w-full dark:bg-pink-100 min-h-screen font-inter">
-          <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl w-full mx-auto">
             <Router basename={basename}>
               <Routes>
                 <Route path="/" element={<WelcomePage />} />
