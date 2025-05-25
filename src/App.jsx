@@ -8,6 +8,7 @@ import Register from './components/Register'
 import O_Subject from './components/O_Subject'
 import Reply from './components/Reply'
 import A_Reply from './components/A_Reply'
+import ErrorBoundary from './components/ErrorBoundary'
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -21,50 +22,57 @@ const basename = isGitHubPages ? '/portal-abuju' : '/';
 
 function App() {
   return (
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="bg-white dark:bg-stone-900 text-stone-900 dark:text-stone-300 min-h-screen font-inter">
-        <div className="max-w-5xl w-11/12 mx-auto">
-          <Router basename={basename}>
-            <Routes>
-              <Route path="/" element={<WelcomePage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/subject" element={
-                <ProtectedRoute>
-                  <Subject />
-                </ProtectedRoute>
-              }
-              />
-              <Route path="/o_subject" element={
-                <ProtectedRoute>
-                  <O_Subject />
-                </ProtectedRoute>
-              }
-              />
-              <Route path="/thankyou" element={
-                <ProtectedRoute>
-                  <ThankYou />
-                </ProtectedRoute>
-              }
-              />
-              <Route path="/reply" element={
-                <ProtectedRoute>
-                  <Reply />
-                </ProtectedRoute>
-              }
-              />
-              <Route path="/a_reply" element={
-                <ProtectedRoute>
-                  <A_Reply />
-                </ProtectedRoute>
-              }
-              />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Router>
+    <ErrorBoundary>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+        <div className="w-full dark:bg-pink-100 min-h-screen font-inter">
+          <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <Router basename={basename}>
+              <Routes>
+                <Route path="/" element={<WelcomePage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/subject" element={
+                  <ProtectedRoute>
+                    <ErrorBoundary>
+                      <Subject />
+                    </ErrorBoundary>
+                  </ProtectedRoute>
+                } />
+                <Route path="/o_subject" element={
+                  <ProtectedRoute>
+                    <ErrorBoundary>
+                      <O_Subject />
+                    </ErrorBoundary>
+                  </ProtectedRoute>
+                } />
+                <Route path="/thankyou" element={
+                  <ProtectedRoute>
+                    <ErrorBoundary>
+                      <ThankYou />
+                    </ErrorBoundary>
+                  </ProtectedRoute>
+                } />
+                <Route path="/reply" element={
+                  <ProtectedRoute>
+                    <ErrorBoundary>
+                      <Reply />
+                    </ErrorBoundary>
+                  </ProtectedRoute>
+                } />
+                <Route path="/a_reply" element={
+                  <ProtectedRoute>
+                    <ErrorBoundary>
+                      <A_Reply />
+                    </ErrorBoundary>
+                  </ProtectedRoute>
+                } />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Router>
+          </div>
         </div>
-      </div>
-    </GoogleOAuthProvider>
+      </GoogleOAuthProvider>
+    </ErrorBoundary>
   )
 }
 

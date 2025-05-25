@@ -21,7 +21,7 @@ function A_Reply() {
     setError('');
 
     try {
-      const response = await fetch('https://formspree.io/f/mdkgrejr', {
+      const response = await fetch('https://formspree.io/f/mrbqwzdg', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ function A_Reply() {
 
   return (
     <div className="bg-zinc-500 p-4 rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold text-center mb-4">Respond to Your Babe's Grievance</h1>
+      <h1 className="text-3xl font-bold text-center mb-4">Responding to my PumPum Annie🍑</h1>
       <div className="bg-white p-4 rounded-lg shadow-md mb-4">
         <h2 className="text-xl font-medium mb-2">Your Reply:</h2>
 
@@ -69,7 +69,7 @@ function A_Reply() {
         )}
 
         <div className="mb-2">
-          <label htmlFor="moodFeedback" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="moodFeedback" className="block text-sm font-medium text-rose-700">
             How do you feel about this?
           </label>
           <select
@@ -89,7 +89,7 @@ function A_Reply() {
         </div>
 
         <div className="mb-2">
-          <label htmlFor="replyMessage" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="replyMessage" className="block text-sm font-medium text-rose-700">
             Write your response:
           </label>
           <textarea
@@ -97,14 +97,14 @@ function A_Reply() {
             value={replyMessage}
             onChange={(e) => setReplyMessage(e.target.value)}
             rows="4"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="text-rose-700 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={isLoading}
             placeholder="Write your heartfelt response here..."
           />
         </div>
 
         <div className="mb-2">
-          <label htmlFor="actionPlan" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="actionPlan" className="text-rose-700 block text-sm font-medium text-gray-700">
             What actions will you take? (Optional)
           </label>
           <textarea
@@ -112,7 +112,7 @@ function A_Reply() {
             value={actionPlan}
             onChange={(e) => setActionPlan(e.target.value)}
             rows="3"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="text-rose-700 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             disabled={isLoading}
             placeholder="List the actions you'll take to address this..."
           />

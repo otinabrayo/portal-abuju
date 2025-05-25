@@ -9,7 +9,7 @@ function O_Subject() {
     Message: '',
     Mood: '',
     Severity: '',
-    Reply:'https://github.com/otinabrayo/portal-abuju/deployments'
+    Reply:'https://portal-abuju.vercel.app/reply'
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -94,7 +94,7 @@ function O_Subject() {
             onChange={handleChange}
             className="border-3 border-pink-400 rounded-md p-3 mb-6 mt-3 focus:border-green-500 focus:outline-none"
           />
-          
+
           <textarea
             name="Message"
             placeholder="What's bothering you babe 😘"
@@ -160,7 +160,7 @@ function O_Subject() {
             placeholder="Custom Solution/severity when needed"
             value={formData.Custom_Solution}
             onChange={handleChange}
-            className="text-pink-900 border-3 border-pink-400 rounded-md p-9 mb-6 focus:border-green-500 focus:outline-none"
+            className="text-black border-3 border-pink-400 rounded-md p-9 mb-6 focus:border-green-500 focus:outline-none"
           ></textarea>
 
           <button
