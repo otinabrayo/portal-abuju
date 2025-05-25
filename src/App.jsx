@@ -6,6 +6,8 @@ import Subject from './components/Subject'
 import ThankYou from './components/ThankYou'
 import Register from './components/Register'
 import O_Subject from './components/O_Subject'
+import Reply from './components/Reply'
+import A_Reply from './components/A_Reply'
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -42,6 +44,18 @@ function App() {
               <Route path="/thankyou" element={
                 <ProtectedRoute>
                   <ThankYou />
+                </ProtectedRoute>
+              }
+              />
+              <Route path="/reply" element={
+                <ProtectedRoute>
+                  <Reply />
+                </ProtectedRoute>
+              }
+              />
+              <Route path="/a_reply" element={
+                <ProtectedRoute>
+                  <A_Reply />
                 </ProtectedRoute>
               }
               />

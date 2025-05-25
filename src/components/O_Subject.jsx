@@ -4,10 +4,12 @@ import ThankYou from './ThankYou'
 
 function O_Subject() {
   const [formData, setFormData] = useState({
+    Type:'Grievance',
     Title: '',
     Message: '',
     Mood: '',
-    Severity: ''
+    Severity: '',
+    Reply:'https://github.com/otinabrayo/portal-abuju/deployments'
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -92,6 +94,7 @@ function O_Subject() {
             onChange={handleChange}
             className="border-3 border-pink-400 rounded-md p-3 mb-6 mt-3 focus:border-green-500 focus:outline-none"
           />
+          
           <textarea
             name="Message"
             placeholder="What's bothering you babe 😘"
@@ -100,7 +103,8 @@ function O_Subject() {
             className="border-3 border-pink-400 rounded-md p-9 mb-6 focus:border-green-500 focus:outline-none"
             required
           ></textarea>
-          <p className="text-xl">Mood :</p>
+
+          <p className="block mb-2 text-sm font-medium text-pink-900">Mood :</p>
           <select
             required
             name="Mood"
@@ -114,8 +118,14 @@ function O_Subject() {
             <option value="😡 angry">😡 angry</option>
             <option value="🤦‍♀️ stressed">🤦‍♀️ stressed</option>
             <option value="👎 booooo!! fuck off">👎 booooo!! fuck off</option>
+            <option value="😕 confused">😕 Confused</option>
+            <option value="😬 frustrated">😬 Frustrated</option>
+            <option value="😊 happy">😊 Happy</option>
+            <option value="🙄 annoyed">🙄 Annoyed</option>
+            <option value="😞 disappointed">😞 Disappointed</option>
           </select>
-          <p className="text-xl">Severity :</p>
+
+          <p className="block mb-2 text-sm font-medium text-pink-900">Severity :</p>
           <select
             required
             name="Severity"
@@ -123,22 +133,36 @@ function O_Subject() {
             onChange={handleChange}
             className="border-3 border-pink-400 rounded-md p-3 mb-6 focus:border-green-500 focus:outline-none"
           >
-            <option value="" disabled selected>Select severity</option>
+            <option value="" disabled>Select severity</option>
+            <option value="✨ Low: Not a big deal">✨ Low: Not a big deal</option>
+            <option value="💡 Medium: Important">💡 Medium: Important</option>
+            <option value="🔥 High: Very important">🔥 High: Very important</option>
+            <option value="🚨 Critical: Red alert">🚨 Critical: Red alert</option>
             <option value="Saying you love me would make me feel better">
               Saying you love me would make me feel better.
             </option>
             <option value="Buying me some Yorghut/Chocolate would fix this">
               Buying me some snack would fix this.
             </option>
-            <option value="You're a shitty boyfriend">You're a shitty Girlfriend.</option>
-            <option value="I could use a hug right now">I could use a hug right now.</option>
-            <option value="Please call me ASAP red Alert⏰ ANNE">
-              Please call me ASAP red Alert⏰ ANNE.
+            <option value="You're a shitty boyfriend">You're a shitty boyfriend.</option>
+            <option value="🤗 I could use a hug right now">🤗 I could use a hug right now.</option>
+            <option value="💀 Extreme: Please call me ASAP ⏰ BRIAN.">
+              💀 Extreme: Please call me ASAP ⏰ BRIAN.
             </option>
             <option value="I'm not sure what to do babe reach out to me">
               I'm not sure what to do babe reach out to me.
             </option>
           </select>
+
+          <p className="block mb-2 text-sm font-medium text-pink-900">Suggest Solution and severity (optional) :</p>
+          <textarea
+            name="Custom_Solution"
+            placeholder="Custom Solution/severity when needed"
+            value={formData.Custom_Solution}
+            onChange={handleChange}
+            className="text-pink-900 border-3 border-pink-400 rounded-md p-9 mb-6 focus:border-green-500 focus:outline-none"
+          ></textarea>
+
           <button
             type="submit"
             className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105"
