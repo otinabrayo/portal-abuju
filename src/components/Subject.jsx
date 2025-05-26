@@ -165,14 +165,14 @@ function Subject() {
             Submit 💌
           </button>
 
-          <button
+          {/* <button
             onClick={() => {
               navigate('/a_reply');
             }}
             className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105 mt-4"
           >
             Reply
-          </button>
+          </button> */}
 
         </form>
       </div>
