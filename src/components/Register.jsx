@@ -75,7 +75,7 @@ function Register() {
 
                 <p className="text-center text-gray-600 mt-4">
                     Already have an account?{' '}
-                    <a href="/portal-abuju/login" className="text-pink-500 hover:text-pink-600 font-small">
+                    <a onClick={() => navigate('/login')} className="text-pink-500 hover:text-pink-600 font-small cursor-pointer">
                         Login
                     </a>
                 </p>

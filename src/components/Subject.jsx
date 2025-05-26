@@ -72,7 +72,7 @@ function Subject() {
           <button
             onClick={() => navigate('/o_subject')}
             type="button"
-            className="transition transform hover:scale-1.01 ml-2 bg-gradient-to-r from-pink-200 to-pink-400 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+            className="animate-pulse transition transform hover:scale-1.01 ml-2 bg-gradient-to-r from-pink-200 to-pink-400 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
           >
             Grieviance to my Girlfriend ❤
           </button>
@@ -152,7 +152,7 @@ function Subject() {
           <p className="block mb-2 text-sm font-medium text-pink-900">Suggest Solution and severity (optional) :</p>
           <textarea
             name="Custom_Solution"
-            placeholder="Custom Solution/severity when needed"
+            placeholder="Custom Solution/Severity when needed"
             value={formData.Custom_Solution}
             onChange={handleChange}
             className="text-black border-3 border-pink-400 rounded-md p-9 mb-6 focus:border-green-500 focus:outline-none"

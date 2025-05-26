@@ -138,7 +138,7 @@ function Login() {
           </button>
         </form>
         <p className="text-sm text-center text-white mt-4">
-          Don't have an account? <a href="/portal-abuju/register" className="text-pink-500 hover:text-pink-600">Register</a>
+          Don't have an account? <a onClick={() => navigate('/register')} className="text-pink-500 hover:text-pink-600 cursor-pointer">Register</a>
         </p>
       </div>
     </div>
