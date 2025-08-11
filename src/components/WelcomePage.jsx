@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Footer from './Footer'
 
 function WelcomePage() {
   const navigate = useNavigate();
@@ -11,7 +10,7 @@ function WelcomePage() {
 
       <div className='bg-pink-200 p-10 rounded-3xl shadow-lg max-w-md w-full transform transition-all hover:scale-105 hover:shadow-xl'>
         <h1 className='text-xl sm:text-2xl font-semibold text-pink-900 mb-4'>
-          Hello Babe 😍<br /> Welcome to your very own Grieviance Portal, abuju 😘
+          Hello Babe 😍<br />x Welcome to your very own Grieviance Portal, abuju 😘
         </h1>
 
         <p className='text-md text-pink-800 mb-6'>
@@ -39,7 +38,7 @@ function WelcomePage() {
         </p>
       </div>
     </div>
-    
+
   )
 }
 
