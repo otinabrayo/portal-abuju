@@ -10,6 +10,7 @@ import Reply from './components/Reply'
 import A_Reply from './components/A_Reply'
 import ErrorBoundary from './components/ErrorBoundary'
 import Footer from './components/Footer'
+import WebsiteDown from './components/WebsiteDown'
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -30,7 +31,8 @@ function App() {
             <div className="max-w-6xl w-full mx-auto">
               <Router basename={basename}>
                 <Routes>
-                  <Route path="/" element={<WelcomePage />} />
+                  {/* <Route path="/" element={<WelcomePage />} /> */}
+                  <Route path="/" element={<WebsiteDown />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/subject" element={
